@@ -1,4 +1,5 @@
 from mesh_terrain import MeshTerrain
+
 from ursina import *
 from ursina.prefabs.first_person_controller import FirstPersonController
 
@@ -10,6 +11,22 @@ subject = FirstPersonController()
 subject.gravity = 0.0
 
 terrain = MeshTerrain()
+
+arm_texture = load_texture('assets/arm_texture.png')
+
+class Hand(Entity):
+    def __init__(self):
+        super().__init__(
+            parent=camera.ui,
+            model='assets/arm',
+            texture=arm_texture,
+            scale=0.2,
+            rotation=Vec3(150, -10, 0),
+            position=Vec2(0.4, -0.6)
+        )
+
+
+hand = Hand()
 
 def update():
     block_collide = False
